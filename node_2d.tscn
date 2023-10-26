@@ -1,47 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://07q0hg6g7nxj"]
+[gd_scene load_steps=4 format=3 uid="uid://07q0hg6g7nxj"]
 
-[ext_resource type="Texture2D" uid="uid://cvldsldq5jmri" path="res://icon.svg" id="1_6xwgs"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hredn"]
-radius = 62.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mqy3"]
-size = Vector2(898, 59)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_wl2nj"]
-b = Vector2(71, -360)
+[ext_resource type="PackedScene" uid="uid://ccyelh8gvsd47" path="res://rigid_circle.tscn" id="1_gi3xg"]
+[ext_resource type="PackedScene" uid="uid://i8a41ovaipe2" path="res://platform.tscn" id="2_a7gwg"]
+[ext_resource type="PackedScene" uid="uid://3wij3g64212b" path="res://rigid_line.tscn" id="3_qd8no"]
 
 [node name="Top" type="Node2D"]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="RigidCircle" parent="." instance=ExtResource("1_gi3xg")]
+position = Vector2(858, 230)
+freeze = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(581, 126)
-shape = SubResource("CircleShape2D_hredn")
+[node name="Platform" parent="." instance=ExtResource("2_a7gwg")]
+position = Vector2(589, 608)
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
-texture = ExtResource("1_6xwgs")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(578, 580)
-shape = SubResource("RectangleShape2D_4mqy3")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-scale = Vector2(7.00781, 0.460937)
-texture = ExtResource("1_6xwgs")
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D2"]
-position = Vector2(585, 122)
-shape = SubResource("SegmentShape2D_wl2nj")
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2/CollisionShape2D2"]
-position = Vector2(74, -347)
-texture = ExtResource("1_6xwgs")
+[node name="RigidLine" parent="." instance=ExtResource("3_qd8no")]
+position = Vector2(211, 59)
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
-node_a = NodePath("../RigidBody2D")
-node_b = NodePath("../RigidBody2D2")
+position = Vector2(743, 457)
+node_a = NodePath("../RigidCircle")
+node_b = NodePath("../RigidLine")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://3wij3g64212b"]
+
+[ext_resource type="Texture2D" uid="uid://cvldsldq5jmri" path="res://icon.svg" id="1_nj4gl"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wl2nj"]
+b = Vector2(536, 395)
+
+[node name="RigidLine" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_wl2nj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nj4gl")
